@@ -15,7 +15,8 @@ class CreateResourcesTable extends Migration
     {
         Schema::create('resources', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->integer('product_id')->unsigned()->index();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->string('customer');
             $table->text('review');
             $table->tinyInteger('star');
