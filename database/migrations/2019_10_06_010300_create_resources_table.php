@@ -14,7 +14,11 @@ class CreateResourcesTable extends Migration
     public function up()
     {
         Schema::create('resources', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->integer('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->string('customer');
+            $table->text('review');
+            $table->tinyInteger('star');
             $table->timestamps();
         });
     }
